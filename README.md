@@ -11,27 +11,34 @@ Supports both Hosted and Direct integrations
 If you are upgrading this module, please make sure to disable the module first with `bin/magento module:disable ecom6_PaymentGateway`. Afterwards, make sure to delete the `app/code/Pixel` or `app/code/ecom6` directories that may interfer with the new version. Make sure to delete the `ecom6_PaymentGateway` row from the `setup_module` table in the database so that any database tables required can get created.
 
 **Step 2:**
-Copy the contents of httpdocs to your Magento root directory. If you are asked if you want to replace any existing files, click Yes.
+Move the contents of the app folder out to a backup directory (Folders named: "design","etc" and files named: "functions.php","bootstrap.php","autoload.php")
 
 **Step 3:**
-Enable the new module using the command `bin/magento module:enable ecom6_PaymentGateway`
+Extract the Ecom6 plug in zip on local machine then Copy the code folder (found under httpdocs/app) to the app directory.
+
 
 **Step 4:**
+Enable the new module using the command `bin/magento module:enable ecom6_PaymentGateway`
+
+**Step 5:**
+Copy back the orginal contents of the app file (Folders named: "design","etc" and files named: "functions.php","bootstrap.php","autoload.php")
+
+**Step 6:**
 Upgrade and re-compile magento so that the system will install the module and create all necessary arrangements for the module. This command can be particulary helpful...
 ```
 bin/magento setup:upgrade && bin/magento setup:db-schema:upgrade && bin/magento setup:di:compile && chmod 775 -R ./var
 ```
 
-**Step 5:**
+**Step 7:**
 Login to the Admin area of Magento. Click on System > Cache Management. Click on the button labelled ‘Flush Magento Cache’, located at the top right of the page.
 
-**Step 6:**
+**Step 8:**
 Click on Stores > Configuration then click on Payment Methods under the Sales heading on the left-hand side of the page. All installed payment methods will be displayed.
 
-**Step 7:**
+**Step 9:**
 Click on ecom6 Payment Gateway to expand the configuration options that you will need to fill out before you can use the module. Here you can also select the hosted or direct integration type. Debugging should be turned off during production.
 
-**Step 8:**
+**Step 10:**
 Head over to the store's settings and select advanced and then system. Once on this page; change the caching type to 'Varnished'.
 
 ## FAQ
